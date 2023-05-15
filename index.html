@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <section class="puzzle-section">
+            <div class="puzzle-wrapper">
+                <div class="puzzle-items left">
+                    <div class="puzzle-item left-top">
+                        <div class="half-circle-bottom circle"></div>
+                        <span class="title">Lorem ipsum dolor sit amet.</span>
+                    </div>
+                    <div class="puzzle-item left-center">
+                        <div class="full-circle-top circle"></div>
+                        <div class="half-circle-bottom circle"></div>
+                        <div class="half-circle-right circle"></div>
+                        <span class="title">Lorem ipsum dolor sit amet.</span>
+                    </div>
+                    <div class="puzzle-item left-bottom">
+                        <div class="full-circle-top circle"></div>
+                        <span class="title">Lorem ipsum dolor sit amet.</span>
+                    </div>
+                </div>
+                <div class="puzzle-items center">
+                    <div class="puzzle-item">
+                        <div class="full-circle-left circle"></div>
+                        <div class="half-circle-right circle"></div>
+                        <span class="title">Lorem ipsum dolor sit amet.</span>
+                    </div>
+                </div>
+                <div class="puzzle-items right">
+                    <div class="puzzle-item right-top">
+                        <div class="half-circle-bottom circle"></div>
+                        <span class="title">Lorem ipsum dolor sit amet.</span>
+                    </div>
+                    <div class="puzzle-item right-center">
+                        <div class="full-circle-top circle"></div>
+                        <div class="half-circle-bottom circle"></div>
+                        <div class="full-circle-left circle"></div>
+                        <span class="title">Lorem ipsum dolor sit amet.</span>
+                    </div>
+                    <div class="puzzle-item right-bottom">
+                        <div class="full-circle-top circle"></div>
+                        <span class="title">Lorem ipsum dolor sit amet.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var containers = document.querySelectorAll('.puzzle-item');
+            var rotationMultiplier = 0.3; // Adjust the rotation speed (increase from 0.1)
+
+            containers.forEach(function (container) {
+                var containerWidth = container.offsetWidth;
+                var containerHeight = container.offsetHeight;
+                var popoverTimeout;
+
+                container.addEventListener('mouseenter', function () {
+                    $(container).popover('show');
+                });
+
+                container.addEventListener('mouseleave', function () {
+                    $(container).popover('hide');
+                    clearTimeout(popoverTimeout);
+                });
+
+                container.addEventListener('mousemove', function (e) {
+                    clearTimeout(popoverTimeout);
+
+                    var mouseX = e.pageX - container.offsetLeft;
+                    var mouseY = e.pageY - container.offsetTop;
+                    var rotationY = ((mouseX - (containerWidth / 2)) / containerWidth) * 180 * rotationMultiplier;
+                    var rotationX = ((mouseY - (containerHeight / 2)) / containerHeight) * -180 * rotationMultiplier;
+
+                    container.style.transform = 'rotateY(' + rotationY + 'deg) rotateX(' + rotationX + 'deg)';
+
+                    popoverTimeout = setTimeout(function () {
+                        $(container).popover('hide');
+                    }, 1000);
+                });
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

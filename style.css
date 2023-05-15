@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.puzzle-wrapper {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+    gap: 40px;
+}
+
+.puzzle-items {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.puzzle-item {
+    width: 100%;
+    height: 100%;
+    background: red;
+    padding: 20px;
+    position: relative;
+    min-height: 150px;
+}
+
+.title {
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.full-circle-left,
+.full-circle-right,
+.half-circle-right,
+.half-circle-left {
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.full-circle-left {
+    left: -20px;
+}
+
+.full-circle-right {
+    right: -20px;
+}
+
+.full-circle-top.circle,
+.full-circle-bottom,
+.half-circle-bottom,
+.half-circle-top {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.full-circle-top.circle {
+    top: -20px;
+}
+
+.full-circle-bottom {
+    bottom: -20px;
+}
+
+.half-circle-top {
+    top: -20px;
+}
+
+.half-circle-bottom {
+    bottom: -20px;
+}
+
+.half-circle-right {
+    right: -20px;
+}
+
+.half-circle-left {
+    left: -20px;
+}
+
+.left-top {
+    background: blue;
+}
+
+.center .full-circle-left,
+.center .full-circle-right {
+    background: red;
+}
+
+.right-top {
+    background: aqua;
+}
+
+.left-center,
+.left-center .full-circle-top {
+    background: yellowgreen;
+}
+
+.left-bottom,
+.left-bottom .full-circle-top {
+    background: tomato;
+}
+
+.right-center .full-circle-left {
+    background: cornflowerblue;
+}
+
+.right-bottom,
+.right-bottom .full-circle-top {
+    background: rebeccapurple;
+}
+
+.right-center,
+.right-center .full-circle-top {
+    background: cornflowerblue;
+}
+
+.left-top,
+.right-top {
+    animation: move-top-to-bottom 2s linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes move-top-to-bottom {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: 40px;
+    }
+}
+
+.left-bottom,
+.right-bottom {
+    animation: move-bootm-to-top 2s linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes move-bootm-to-top {
+    from {
+        top: 0;
+    }
+
+    to {
+        bottom: 40px;
+    }
+}
+
+.left {
+    animation: move-left-to-right 2s linear;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+@keyframes move-left-to-right {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: 40px;
+    }
+}
+
+.right {
+    animation: move-right-to-left 2s linear;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+@keyframes move-right-to-left {
+    from {
+        right: 0;
+    }
+
+    to {
+        right: 40px;
+    }
+}
+
+/*  */
+.puzzle-item {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-in-out;
+}
+
+.puzzle-item.right-top {
+    transform-origin: center center;
+}
+
+.puzzle-item .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+}
+
